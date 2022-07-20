@@ -2,27 +2,19 @@
 // More info: https://quasar.dev/quasar-cli/developing-browser-extensions/content-hooks
 import { bexContent } from 'quasar/wrappers'
 
-export default bexContent((/* bridge */) => {
-  const subject = 'file://'
-  const replace = 'unshift://'
-  const list = document.querySelectorAll(`a[href^='${subject}']`)
-
-  list.forEach((a) => {
-    a.href = a.href.replace(subject, replace)
-    console.log('link: ' + a.href)
-  })
-
-  // Hook into the bridge to listen for events sent from the client BEX.
-  /*
-  bridge.on('some.event', event => {
-    if (event.data.yourProp) {
-      // Access a DOM element from here.
-      // Document in this instance is the underlying website the contentScript runs on
-      const el = document.getElementById('some-id')
-      if (el) {
-        el.value = 'Quasar Rocks!'
+export default bexContent((bridge) => {
+  const storageName = 'settings'
+  bridge.send('storage.get', { key: storageName })
+    .then((settings) => {
+      if (settings.data) {
+        const subject = settings.data.jack_find
+        const replace = settings.data.jack_replace
+        const list = document.querySelectorAll(`a[href^='${subject}']`)
+        list.forEach((a) => {
+          a.href = a.getAttribute('href').replace(subject, replace)
+        })
       }
-    }
-  })
-  */
+    }).catch((error) => {
+      console.log('could not fetch settings', error)
+    })
 })
