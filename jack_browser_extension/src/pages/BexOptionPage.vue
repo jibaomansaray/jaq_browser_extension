@@ -20,15 +20,27 @@ import { useQuasar } from 'quasar'
 
 export default defineComponent({
   setup () {
-    const subject = ref('')
-    const replace = ref('')
+    const subject = ref('file://')
+    const replace = ref('jackexplorer://')
     const q = useQuasar()
+    const storageName = 'settings'
+
+    q.bex.send('storage.get', { key: storageName }).then((settings) => {
+      if (settings.data) {
+        subject.value = settings.data.jack_find
+        replace.value = settings.data.jack_replace
+      }
+    }).catch((e) => {
+      console.log('error', e)
+    })
 
     const doSave = () => {
-      console.log('sending settings')
-      q.bex.send('save_settings', {
-        jack_find: subject.value,
-        jack_replace: replace.value
+      q.bex.send('storage.set', {
+        key: storageName,
+        data: {
+          jack_find: subject.value,
+          jack_replace: replace.value
+        }
       })
     }
 
