@@ -20,7 +20,9 @@
         "protocols": [
           {
             "name": "Jaq Explorer",
-            "schemes": ["jaqexplorer"]
+            "schemes": [
+              "jaqexplorer"
+            ]
           }
         ]
       },
