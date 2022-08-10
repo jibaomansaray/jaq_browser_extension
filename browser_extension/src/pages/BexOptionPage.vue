@@ -21,14 +21,14 @@ import { useQuasar } from 'quasar'
 export default defineComponent({
   setup () {
     const subject = ref('file://')
-    const replace = ref('jackexplorer://')
+    const replace = ref('jaqexplorer://')
     const q = useQuasar()
     const storageName = 'settings'
 
     q.bex.send('storage.get', { key: storageName }).then((settings) => {
       if (settings.data) {
-        subject.value = settings.data.jack_find
-        replace.value = settings.data.jack_replace
+        subject.value = settings.data.jaq_find
+        replace.value = settings.data.jaq_replace
       }
     }).catch((e) => {
       console.log('error', e)
@@ -38,8 +38,8 @@ export default defineComponent({
       q.bex.send('storage.set', {
         key: storageName,
         data: {
-          jack_find: subject.value,
-          jack_replace: replace.value
+          jaq_find: subject.value,
+          jaq_replace: replace.value
         }
       })
     }

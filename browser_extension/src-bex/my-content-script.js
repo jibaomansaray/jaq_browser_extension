@@ -7,8 +7,8 @@ export default bexContent((bridge) => {
   bridge.send('storage.get', { key: storageName })
     .then((settings) => {
       if (settings.data) {
-        const subject = settings.data.jack_find
-        const replace = settings.data.jack_replace
+        const subject = settings.data.jaq_find
+        const replace = settings.data.jaq_replace
         const list = document.querySelectorAll(`a[href^='${subject}']`)
         list.forEach((a) => {
           a.href = a.getAttribute('href').replace(subject, replace)

@@ -1,4 +1,4 @@
-# Quasar App (jack-browser-extension)
+# Quasar App (jaq-browser-extension)
 
 A Quasar Project
 
