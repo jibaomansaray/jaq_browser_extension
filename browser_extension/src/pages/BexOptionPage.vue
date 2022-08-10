@@ -2,13 +2,13 @@
   <q-page class="row items-center justify-evenly">
     <div class="row">
       <div class="col-12">
-        <q-input label="Find" v-model="subject" />
+        <q-input :label="'Find: file://'+ subject" v-model="subject" />
       </div>
       <div class="col-12">
-        <q-input label="Replace" v-model="replace" />
+        <q-input :label="'Replace: jaqexplorer://' + replace" v-model="replace" />
       </div>
-      <div class="col-12">
-        <q-btn @click="doSave">Save</q-btn>
+      <div class="col-12 q-mt-md">
+        <q-btn @click="doSave" color="primary">Save</q-btn>
       </div>
     </div>
     </q-page>
@@ -20,8 +20,8 @@ import { useQuasar } from 'quasar'
 
 export default defineComponent({
   setup () {
-    const subject = ref('file://')
-    const replace = ref('jaqexplorer://')
+    const subject = ref('')
+    const replace = ref('')
     const q = useQuasar()
     const storageName = 'settings'
 
@@ -30,16 +30,16 @@ export default defineComponent({
         subject.value = settings.data.jaq_find
         replace.value = settings.data.jaq_replace
       }
-    }).catch((e) => {
-      console.log('error', e)
+    }).catch(() => {
+      // ignore
     })
 
     const doSave = () => {
       q.bex.send('storage.set', {
         key: storageName,
         data: {
-          jaq_find: subject.value,
-          jaq_replace: replace.value
+          jaq_find: `file://${subject.value}`,
+          jaq_replace: `jaqexplorer://${replace.value}`
         }
       })
     }

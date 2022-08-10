@@ -14,7 +14,7 @@ export default bexContent((bridge) => {
           a.href = a.getAttribute('href').replace(subject, replace)
         })
       }
-    }).catch((error) => {
-      console.log('could not fetch settings', error)
+    }).catch(() => {
+      // ignored
     })
 })
