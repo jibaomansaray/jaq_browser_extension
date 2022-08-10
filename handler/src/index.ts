@@ -2,7 +2,7 @@ import { app, BrowserWindow, shell} from 'electron';
 import * as path from 'path';
 
 let mainWindow: BrowserWindow | null = null;
-const _debug = true; // only for development
+const _debug = false; // only for development
 
 if (process.defaultApp) {
   if (process.argv.length >= 2) {
