@@ -6,11 +6,11 @@ var mainWindow = null;
 var _debug = true;
 if (process.defaultApp) {
     if (process.argv.length >= 2) {
-        electron_1.app.setAsDefaultProtocolClient('jackexplorer', process.execPath, [path.resolve(process.argv[1])]);
+        electron_1.app.setAsDefaultProtocolClient('jaqexplorer', process.execPath, [path.resolve(process.argv[1])]);
     }
 }
 else {
-    electron_1.app.setAsDefaultProtocolClient('jackexplorer');
+    electron_1.app.setAsDefaultProtocolClient('jaqexplorer');
 }
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -18,10 +18,10 @@ if (require('electron-squirrel-startup')) {
     electron_1.app.quit();
 }
 var openFolderOrFile = function (link) {
-    if (link && link.indexOf('jackexplorer://') === 0) {
+    if (link && link.indexOf('jaqexplorer://') === 0) {
         link = decodeURI(link);
-        // shell.openPath(link.replace('jackexplorer://', '').replace(/\\/g, '/'));
-        electron_1.shell.openExternal(link.replace('jackexplorer://', '').replace(/\\/g, '/'));
+        // shell.openPath(link.replace('jaqexplorer://', '').replace(/\\/g, '/'));
+        electron_1.shell.openExternal(link.replace('jaqexplorer://', '').replace(/\\/g, '/'));
         logEverywhere("Open file or folder: " + JSON.stringify(link));
         electron_1.app.quit(); // close this app
     }

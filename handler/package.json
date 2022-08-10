@@ -19,8 +19,8 @@
       "packagerConfig": {
         "protocols": [
           {
-            "name": "Jack Explorer",
-            "schemes": ["jackexplorer"]
+            "name": "Jaq Explorer",
+            "schemes": ["jaqexplorer"]
           }
         ]
       },

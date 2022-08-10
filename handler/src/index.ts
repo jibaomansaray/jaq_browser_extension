@@ -6,10 +6,10 @@ const _debug = true; // only for development
 
 if (process.defaultApp) {
   if (process.argv.length >= 2) {
-    app.setAsDefaultProtocolClient('jackexplorer', process.execPath, [path.resolve(process.argv[1])])
+    app.setAsDefaultProtocolClient('jaqexplorer', process.execPath, [path.resolve(process.argv[1])])
   }
 } else {
-  app.setAsDefaultProtocolClient('jackexplorer')
+  app.setAsDefaultProtocolClient('jaqexplorer')
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -19,9 +19,9 @@ if (require('electron-squirrel-startup')) {
 }
 
 const openFolderOrFile = (link: string) => {
-  if (link && link.indexOf('jackexplorer://') === 0) {
+  if (link && link.indexOf('jaqexplorer://') === 0) {
     link = decodeURI(link);
-    shell.openExternal(link.replace('jackexplorer://', '').replace(/\\/g, '/'));
+    shell.openExternal(link.replace('jaqexplorer://', '').replace(/\\/g, '/'));
     logEverywhere("Open file or folder: " + JSON.stringify(link))
     app.quit(); // close this app
   }
