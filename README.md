@@ -11,6 +11,9 @@ that can handle the custom protocol `jaqexplorer://` .
 
  Clicking on a link that starts with `file://` will open the ``file`` or ``folder`` on your computer
 
+## Download
+Prebuilt packages are under the **releases** section
+
 ## Prerequisite for development or manual building
  - [Node JS](https://nodejs.org/)
  - Yarn: After installing nodejs, run:
