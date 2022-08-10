@@ -57,7 +57,7 @@ The browser extension and desktop application are mainly written in Typescript.
 
 ### Desktop application
 **handler/src/index.ts** contains all of the logic for the desktop application.
-To run the desktop application when developing run the command `yarn dev` under the **handler** folder. For now, any change to the desktop application code will require you to re-run this command.
+To run the desktop application when developing run the command `yarn start` under the **handler** folder. For now, any change to the desktop application code will require you to re-run this command.
 
 
 ### Browser application

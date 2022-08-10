@@ -3,7 +3,7 @@ exports.__esModule = true;
 var electron_1 = require("electron");
 var path = require("path");
 var mainWindow = null;
-var _debug = true;
+var _debug = false; // only for development
 if (process.defaultApp) {
     if (process.argv.length >= 2) {
         electron_1.app.setAsDefaultProtocolClient('jaqexplorer', process.execPath, [path.resolve(process.argv[1])]);
@@ -20,7 +20,6 @@ if (require('electron-squirrel-startup')) {
 var openFolderOrFile = function (link) {
     if (link && link.indexOf('jaqexplorer://') === 0) {
         link = decodeURI(link);
-        // shell.openPath(link.replace('jaqexplorer://', '').replace(/\\/g, '/'));
         electron_1.shell.openExternal(link.replace('jaqexplorer://', '').replace(/\\/g, '/'));
         logEverywhere("Open file or folder: " + JSON.stringify(link));
         electron_1.app.quit(); // close this app
@@ -31,17 +30,16 @@ if (!gotTheLock) {
     electron_1.app.quit();
 }
 else {
-    electron_1.app.on('second-instance', function (event, commandLine, workingDirectory) {
+    electron_1.app.on('second-instance', function (event, commandLine) {
         // Someone tried to run a second instance, we should focus our window.
-        console.log(commandLine);
         logEverywhere(JSON.stringify(commandLine));
         if (mainWindow) {
-            if (mainWindow.isMinimized())
+            if (mainWindow.isMinimized()) {
                 mainWindow.restore();
+            }
             mainWindow.focus();
         }
     });
-    logEverywhere('worked......');
 }
 var createWindow = function () {
     // Create the browser window.
@@ -91,7 +89,7 @@ electron_1.app.on('will-finish-launching', function () {
     });
 });
 function logEverywhere(s) {
-    if (_debug === true) {
+    if (_debug) {
         console.log(s);
         // mainWindow is main browser window of your app
         if (mainWindow && mainWindow.webContents) {
