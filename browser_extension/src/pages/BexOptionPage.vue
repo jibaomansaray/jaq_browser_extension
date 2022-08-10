@@ -32,7 +32,7 @@ export default defineComponent({
     q.bex.send('storage.get', { key: storageName }).then((settings) => {
       if (settings.data) {
         subject.value = settings.data.jaq_find
-        replace.value = settings.data.jaq_replace
+        replace.value = (settings.data.jaq_replace) ? settings.data.jaq_replace.replaceAll('jaqexplorer://', '') : ''
         domain.value = settings.data.jaq_domain || ''
       }
     }).catch(() => {
@@ -44,7 +44,7 @@ export default defineComponent({
         key: storageName,
         data: {
           jaq_find: subject.value,
-          jaq_replace: `jaqexplorer://${replace.value}`,
+          jaq_replace: (replace.value.indexOf('jaqexplorer://') !== 0) ? `jaqexplorer://${replace.value}` : replace.value,
           jaq_domain: domain.value
         }
       })
