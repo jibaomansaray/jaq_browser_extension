@@ -102,7 +102,7 @@ app.on('will-finish-launching', () => {
 
 
 function logEverywhere (s: unknown) {
-  if (_debug === true) {
+  if (_debug) {
     console.log(s);
     // mainWindow is main browser window of your app
     if (mainWindow && mainWindow.webContents) {
