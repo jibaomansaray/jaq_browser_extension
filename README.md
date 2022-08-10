@@ -66,13 +66,13 @@ To run the desktop application when developing run the command `yarn start` unde
 
  The main logic for the extension is located at: **browser_extension/src-bex/my-content-script.js**.
 
- The browser extension supports *hot reloading*. In order to rebuild the extension as you edit the code base, `yarn dev` under the **browser_extension** folder. As you develop, the extension is built and store at **browser_extension/dist/bex**.
+ The browser extension supports *hot reloading*. In order to rebuild the extension as you edit the code base, run `yarn dev` under the **browser_extension** folder. As you develop, the extension is built and store at **browser_extension/dist/bex**.
 
  Most browsers allow you to enable **developer mode**. Please do so in order to test the extension in the
  browser of your choice. In order to install the unpacked, developer version, of the extension, browse and select the folder **browser_extension/dis/bex**.
 
 
- ## Contribution
+ ## Contributing
  Fork this repo, apply your changes and submit a pull request.
 
  ## License
